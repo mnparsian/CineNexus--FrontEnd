@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-const AUTH_API_URL = "http://localhost:8080/api/auth";
-const OTP_API_URL = "http://localhost:8080/api/otp";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const AUTH_API_URL = `${BASE_URL}/api/auth`;
+const OTP_API_URL = `${BASE_URL}/api/otp`;
 
 // ✅ send OTP
 export const sendOtp = createAsyncThunk("auth/sendOtp", async (email) => {
@@ -82,7 +82,7 @@ export const updateUserProfile = createAsyncThunk("auth/updateUserProfile", asyn
     console.log("Sending update request for User ID:", userId);
     const token = getState().auth.token;
 
-    const response = await fetch(`http://localhost:8080/api/users/${userId}`, {
+    const response = await fetch(`${BASE_URL}/api/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export const updateUserProfile = createAsyncThunk("auth/updateUserProfile", asyn
 
 export const uploadProfileImage = createAsyncThunk("auth/uploadProfileImage", async ({ userId, file }, { rejectWithValue, dispatch }) => {
   try {
-    const response = await fetch(`http://localhost:8080/api/users/image/${userId}`, {
+    const response = await fetch(`${BASE_URL}/api/users/image/${userId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`

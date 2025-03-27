@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const searchUsers = createAsyncThunk("admin/searchUsers", async (query, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://localhost:8080/api/users/search?query=${query}`, {
+    const res = await fetch(`${BASE_URL}/api/users/search?query=${query}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"

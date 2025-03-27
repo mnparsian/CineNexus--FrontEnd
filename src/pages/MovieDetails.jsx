@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,15 +44,15 @@ export default function MovieDetails() {
 
   const fetchData = async () => {
     try {
-      const movieRes = await fetch(`http://localhost:8080/api/media-query/${id}`);
+      const movieRes = await fetch(`${BASE_URL}/api/media-query/${id}`);
       const movieData = await movieRes.json();
       setMovie(movieData);
 
-      const crewRes = await fetch(`http://localhost:8080/api/crew/media/${id}`);
+      const crewRes = await fetch(`${BASE_URL}/api/crew/media/${id}`);
       const crewData = await crewRes.json();
       setCrew(crewData);
 
-      const reviewRes = await fetch(`http://localhost:8080/api/reviews-comments/reviews/media/${id}`);
+      const reviewRes = await fetch(`${BASE_URL}/api/reviews-comments/reviews/media/${id}`);
       const reviewData = await reviewRes.json();
       setReviews([...reviewData]);
     } catch (error) {

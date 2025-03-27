@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect } from "react";
 import { Drawer, DrawerTrigger, DrawerContent } from "@/components/ui/drawer";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -26,7 +27,7 @@ export default function ReviewSidebar({ open, setOpen, reviews, fetchReviews, mo
       const fetchedWriters = {};
       await Promise.all(
         reviews.map(async (review) => {
-          const res = await fetch(`http://localhost:8080/api/reviews-comments/reviews/writer/${review.id}`);
+          const res = await fetch(`${BASE_URL}/api/reviews-comments/reviews/writer/${review.id}`);
           const writer = await res.json();
           fetchedWriters[review.id] = writer;
         })
@@ -40,7 +41,7 @@ export default function ReviewSidebar({ open, setOpen, reviews, fetchReviews, mo
   const handleSubmitReview = async () => {
     if (!user || !token) return alert("Log in first to post a review!");
 
-    const response = await fetch("http://localhost:8080/api/reviews-comments/reviews", {
+    const response = await fetch(`${BASE_URL}/api/reviews-comments/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +70,7 @@ export default function ReviewSidebar({ open, setOpen, reviews, fetchReviews, mo
 
     try {
       console.log("⏳Get Reviwes likes...");
-      const responseLikes = await fetch(`http://localhost:8080/api/reviews-comments/reviews/like/${reviewId}`, {
+      const responseLikes = await fetch(`${BASE_URL}/api/reviews-comments/reviews/like/${reviewId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +90,7 @@ export default function ReviewSidebar({ open, setOpen, reviews, fetchReviews, mo
         const likeId = likeObject.id;
         console.log(`🗑 Send a request to remove likes with ID:`, likeId);
 
-        const responseUnlike = await fetch(`http://localhost:8080/api/reviews-comments/reviews/likes/${likeId}`, {
+        const responseUnlike = await fetch(`${BASE_URL}/api/reviews-comments/reviews/likes/${likeId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -108,7 +109,7 @@ export default function ReviewSidebar({ open, setOpen, reviews, fetchReviews, mo
       } else {
         console.log("⏳ Send a request for likes...");
 
-        const responseLike = await fetch(`http://localhost:8080/api/reviews-comments/reviews/${reviewId}/like?userId=${user.id}`, {
+        const responseLike = await fetch(`${BASE_URL}/api/reviews-comments/reviews/${reviewId}/like?userId=${user.id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const SuccessPayment = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState("processing");
@@ -20,7 +20,7 @@ const SuccessPayment = () => {
 
     const confirmPayment = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/paypal/success?paymentId=${paymentId}&token=${token}&PayerID=${payerId}`, {
+        const response = await fetch(`${BASE_URL}/api/paypal/success?paymentId=${paymentId}&token=${token}&PayerID=${payerId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`

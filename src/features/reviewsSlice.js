@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Base API URL
-const API_BASE_URL = "http://localhost:8080/api/reviews-comments";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = `${BASE_URL}/api/reviews-comments`;
 
 export const fetchUserReviews = createAsyncThunk("reviews/fetchUserReviews", async (userId, { getState, rejectWithValue }) => {
   try {

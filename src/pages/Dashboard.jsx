@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Sidebar from "../components/Sidebar";
@@ -61,7 +62,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchSubscription = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/api/subscriptions/user/${userId}`, {
+        const res = await fetch(`${BASE_URL}/api/subscriptions/user/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

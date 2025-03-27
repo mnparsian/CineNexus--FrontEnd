@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails, updateUserProfile, uploadProfileImage } from "../features/authSlice";
@@ -27,11 +28,11 @@ const ProfileSection = () => {
   useEffect(() => {
     dispatch(fetchUserDetails());
 
-    fetch("http://localhost:8080/api/language")
+    fetch(`${BASE_URL}/api/language`)
       .then((res) => res.json())
       .then((data) => setLanguages(data));
 
-    fetch("http://localhost:8080/api/country")
+    fetch(`${BASE_URL}/api/country`)
       .then((res) => res.json())
       .then((data) => setCountries(data));
   }, [dispatch]);

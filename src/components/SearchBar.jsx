@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -41,9 +42,9 @@ export default function SearchBar() {
 
     const fetchData = async () => {
       try {
-        const moviesPromise = fetch(`http://localhost:8080/api/media-query/search?title=${debouncedQuery}`).then((res) => res.json());
+        const moviesPromise = fetch(`${BASE_URL}/api/media-query/search?title=${debouncedQuery}`).then((res) => res.json());
 
-        const personsPromise = fetch(`http://localhost:8080/api/crew/search?name=${debouncedQuery}`).then((res) => res.json());
+        const personsPromise = fetch(`${BASE_URL}/api/crew/search?name=${debouncedQuery}`).then((res) => res.json());
 
         const [moviesData, personsData] = await Promise.all([moviesPromise, personsPromise]);
 

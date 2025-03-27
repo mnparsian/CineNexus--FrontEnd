@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchUserProfile = createAsyncThunk("publicProfile/fetchUserProfile", async (userId, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:8080/api/users/profile/${userId}`, {
+    const response = await fetch(`${BASE_URL}/api/users/profile/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -23,7 +24,7 @@ export const fetchUserProfile = createAsyncThunk("publicProfile/fetchUserProfile
 export const fetchUserFriends = createAsyncThunk("publicProfile/fetchUserFriends", async (userId, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:8080/api/friends/all/${userId}`, {
+    const response = await fetch(`${BASE_URL}/api/friends/all/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -43,7 +44,7 @@ export const fetchUserFriends = createAsyncThunk("publicProfile/fetchUserFriends
 export const fetchLoggedInUserFriends = createAsyncThunk("publicProfile/fetchLoggedInUserFriends", async (loggedInUserId, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:8080/api/friends/all/${loggedInUserId}`, {
+    const response = await fetch(`${BASE_URL}/api/friends/all/${loggedInUserId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

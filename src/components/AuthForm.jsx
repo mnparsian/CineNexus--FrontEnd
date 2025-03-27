@@ -43,9 +43,9 @@ export default function AuthForm() {
       >
         <div className="p-4 bg-gray-100 rounded-md">
           <h2 className="text-lg font-bold mb-2">Signup</h2>
-          <input type="text" placeholder="نام" className="w-full p-2 mb-2 border rounded" />
-          <input type="email" placeholder="ایمیل" className="w-full p-2 mb-2 border rounded" />
-          <input type="password" placeholder="رمز عبور" className="w-full p-2 mb-2 border rounded" />
+          <input type="text" placeholder="Name" className="w-full p-2 mb-2 border rounded" />
+          <input type="email" placeholder="Email" className="w-full p-2 mb-2 border rounded" />
+          <input type="password" placeholder="Password" className="w-full p-2 mb-2 border rounded" />
           <button className="w-full bg-green-500 text-white py-2 rounded">signup</button>
         </div>
       </Transition>

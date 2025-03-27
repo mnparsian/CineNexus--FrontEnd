@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +12,7 @@ export default function CrewMembersSheet({ personId, personName, open, onOpenCha
 
   useEffect(() => {
     if (personId && open) {
-      fetch(`http://localhost:8080/api/crew/media/person/${personId}`)
+      fetch(`${BASE_URL}/api/crew/media/person/${personId}`)
         .then((res) => res.json())
         .then((data) => setMovies(data))
         .catch((error) => console.error("Error receiving person's Movies:", error));

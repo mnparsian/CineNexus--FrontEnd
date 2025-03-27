@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const API_BASE_URL = "http://localhost:8080/api/friends";
+const API_BASE_URL = `${BASE_URL}/api/friends`;
 
 export const fetchFriendships = createAsyncThunk("friends/fetchFriendships", async (userId, { getState, rejectWithValue }) => {
   try {
@@ -28,7 +29,7 @@ export const fetchFriendships = createAsyncThunk("friends/fetchFriendships", asy
 export const sendFriendRequest = createAsyncThunk("friends/sendFriendRequest", async ({ userId, friendId }, { getState, rejectWithValue }) => {
   try {
     const token = getState().auth.token;
-    const response = await fetch(`http://localhost:8080/api/friends/${userId}`, {
+    const response = await fetch(`${BASE_URL}/api/friends/${userId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

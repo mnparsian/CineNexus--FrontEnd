@@ -16,5 +16,9 @@ export default defineConfig({
   },
   define: {
     global: "window"
-  }
+  },
+  build: {
+    outDir: "dist"
+  },
+  base: "/"
 });

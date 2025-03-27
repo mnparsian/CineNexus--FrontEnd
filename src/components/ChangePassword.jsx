@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -26,7 +27,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/users/change-password`, {
+      const response = await fetch(`${BASE_URL}/api/users/change-password`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

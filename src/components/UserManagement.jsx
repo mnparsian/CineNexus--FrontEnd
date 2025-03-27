@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -26,7 +27,7 @@ export default function UserManagement({ user, onUpdate }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:8080/api/users/update/${user.id}`, {
+      const res = await fetch(`${BASE_URL}/api/users/update/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +53,7 @@ export default function UserManagement({ user, onUpdate }) {
 
   const handleDeleteUser = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/users/${user.id}`, {
+      const res = await fetch(`${BASE_URL}/api/users/${user.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`

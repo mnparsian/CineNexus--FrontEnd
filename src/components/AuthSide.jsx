@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,11 +26,11 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
   const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/country")
+    fetch(`${BASE_URL}/api/country`)
       .then((res) => res.json())
       .then((data) => setCountries(data));
 
-    fetch("http://localhost:8080/api/language")
+    fetch(`${BASE_URL}/api/language`)
       .then((res) => res.json())
       .then((data) => setLanguages(data));
   }, []);

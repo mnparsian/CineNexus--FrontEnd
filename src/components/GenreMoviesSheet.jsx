@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
@@ -14,7 +15,7 @@ export default function GenreMoviesSheet({ genreId, genreName }) {
     if (!open || !genreId) return;
     const fetchMovies = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/api/media-query/genre/${genreId}`);
+        const res = await fetch(`${BASE_URL}/api/media-query/genre/${genreId}`);
         const data = await res.json();
         setMovies(data.content || []);
       } catch (error) {

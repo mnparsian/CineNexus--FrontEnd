@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { setChatRoomId } from "../features/chatSlice";
@@ -40,7 +41,7 @@ const MessageSection = () => {
       if (!friendId) return;
 
       try {
-        const response = await fetch(`http://localhost:8080/chat/getChatRoom/${friendId}?userId=${userId}`, {
+        const response = await fetch(`${BASE_URL}/chat/getChatRoom/${friendId}?userId=${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -67,7 +68,7 @@ const MessageSection = () => {
 
     const fetchMessages = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/chat/messages/${chatRoomId}`, {
+        const response = await fetch(`${BASE_URL}/chat/messages/${chatRoomId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -89,7 +90,7 @@ const MessageSection = () => {
 
   useEffect(() => {
     if (!stompClient) {
-      const socket = new SockJS("http://localhost:8080/ws");
+      const socket = new SockJS(`${BASE_URL}/ws`);
       const client = over(socket);
       client.connect({}, () => {
         console.log("WebSocket Connected!");

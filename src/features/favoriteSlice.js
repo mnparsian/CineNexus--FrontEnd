@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-const API_BASE_URL = "http://localhost:8080/api/favorites";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = `${BASE_URL}/api/favorites`;
 
 // Fetch favorite movies
 export const fetchFavorites = createAsyncThunk("favorites/fetchFavorites", async (userId, { getState }) => {

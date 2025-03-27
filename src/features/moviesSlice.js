@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async (category = "movie/popular") => {
-  const response = await fetch(`http://localhost:8080/api/media-query/category?category=${category}&size=10`);
+  const response = await fetch(`${BASE_URL}/api/media-query/category?category=${category}&size=10`);
   if (!response.ok) {
     throw new Error("Failed to fetch movies");
   }

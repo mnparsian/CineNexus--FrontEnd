@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-const TMDB_API_KEY = "2ac25fdd95d009bd75ffd103ee6a4b32";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const fetchMovieDetails = async (movieName) => {
   const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieName)}&api_key=${TMDB_API_KEY}`;
@@ -20,7 +20,7 @@ const RecommendationSection = ({ likedMovies }) => {
 
   const fetchRecommendations = async () => {
     setLoading(true);
-    const response = await fetch("http://localhost:8080/api/recommendations/ai", {
+    const response = await fetch(`${BASE_URL}/api/recommendations/ai`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(likedMovies)

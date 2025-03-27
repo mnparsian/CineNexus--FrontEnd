@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +19,7 @@ export default function ReviewComments({ reviewId, user, token }) {
 
     const fetchCommentsAndLikes = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/reviews-comments/comments/review/${reviewId}`, {
+        const response = await fetch(`${BASE_URL}/api/reviews-comments/comments/review/${reviewId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await response.json();
@@ -27,7 +28,7 @@ export default function ReviewComments({ reviewId, user, token }) {
         await Promise.all(
           data.map(async (comment) => {
             try {
-              const likeResponse = await fetch(`http://localhost:8080/api/reviews-comments/comments/${comment.id}/isLiked?userId=${user.id}`, {
+              const likeResponse = await fetch(`${BASE_URL}/api/reviews-comments/comments/${comment.id}/isLiked?userId=${user.id}`, {
                 headers: { Authorization: `Bearer ${token}` }
               });
               const isLiked = await likeResponse.json();
@@ -52,7 +53,7 @@ export default function ReviewComments({ reviewId, user, token }) {
     if (!newComment.trim()) return alert("The comment text cannot be empty!");
 
     try {
-      const response = await fetchWithAuth(`http://localhost:8080/api/reviews-comments/comments`, {
+      const response = await fetchWithAuth(`${BASE_URL}/api/reviews-comments/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +76,7 @@ export default function ReviewComments({ reviewId, user, token }) {
     if (!user || !token) return alert("Log in first to delete!");
 
     try {
-      const response = await fetch(`http://localhost:8080/api/reviews-comments/comments/${commentId}`, {
+      const response = await fetch(`${BASE_URL}/api/reviews-comments/comments/${commentId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -100,7 +101,7 @@ export default function ReviewComments({ reviewId, user, token }) {
 
     try {
       console.log("⏳ Get comment likes...");
-      const responseLikes = await fetch(`http://localhost:8080/api/reviews-comments/comments/${commentId}/likes`, {
+      const responseLikes = await fetch(`${BASE_URL}/api/reviews-comments/comments/${commentId}/likes`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -117,7 +118,7 @@ export default function ReviewComments({ reviewId, user, token }) {
         const likeId = likeObject.id;
         console.log(`🗑 Send a request to remove likes with ID:`, likeId);
 
-        const responseUnlike = await fetch(`http://localhost:8080/api/reviews-comments/comments/likes/${likeId}`, {
+        const responseUnlike = await fetch(`${BASE_URL}/api/reviews-comments/comments/likes/${likeId}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -126,7 +127,7 @@ export default function ReviewComments({ reviewId, user, token }) {
           console.log("✅ Like successfully deleted!");
           setLikedComments((prev) => ({ ...prev, [commentId]: false }));
 
-          const updatedLikesResponse = await fetch(`http://localhost:8080/api/reviews-comments/comments/${commentId}/likes`, {
+          const updatedLikesResponse = await fetch(`${BASE_URL}/api/reviews-comments/comments/${commentId}/likes`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
           });
@@ -143,7 +144,7 @@ export default function ReviewComments({ reviewId, user, token }) {
       } else {
         console.log("⏳ Send a request for likes...");
 
-        const responseLike = await fetch(`http://localhost:8080/api/reviews-comments/comments/${commentId}/like?userId=${user.id}`, {
+        const responseLike = await fetch(`${BASE_URL}/api/reviews-comments/comments/${commentId}/like?userId=${user.id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -156,7 +157,7 @@ export default function ReviewComments({ reviewId, user, token }) {
           console.log("✅ Like successfully registered!");
           setLikedComments((prev) => ({ ...prev, [commentId]: true }));
 
-          const updatedLikesResponse = await fetch(`http://localhost:8080/api/reviews-comments/comments/${commentId}/likes`, {
+          const updatedLikesResponse = await fetch(`${BASE_URL}/api/reviews-comments/comments/${commentId}/likes`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
           });
@@ -180,7 +181,7 @@ export default function ReviewComments({ reviewId, user, token }) {
     if (!user || !token) return alert("Log in first to edit a comment!");
 
     try {
-      const response = await fetch(`http://localhost:8080/api/reviews-comments/comments/${commentId}`, {
+      const response = await fetch(`${BASE_URL}/api/reviews-comments/comments/${commentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

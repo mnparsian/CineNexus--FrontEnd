@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -12,12 +13,12 @@ export default function ReviewDetails({ review, handleLikeReview, user, token })
 
   useEffect(() => {
     if (review) {
-      fetch(`http://localhost:8080/api/reviews-comments/comments/review/${review.id}`)
+      fetch(`${BASE_URL}/api/reviews-comments/comments/review/${review.id}`)
         .then((res) => res.json())
         .then((data) => setComments(data))
         .catch((error) => console.error("Error fetching comments:", error));
 
-      fetch(`http://localhost:8080/api/reviews-comments/reviews/writer/${review.id}`)
+      fetch(`${BASE_URL}/api/reviews-comments/reviews/writer/${review.id}`)
         .then((res) => res.json())
         .then((data) => setWriter(data))
         .catch((error) => console.error("Error fetching writer info:", error));

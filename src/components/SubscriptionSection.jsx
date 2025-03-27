@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FaPaypal } from "react-icons/fa";
@@ -23,7 +24,7 @@ const SubscriptionSection = () => {
 
   const handleSuccessfulPayment = async (paymentId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/payments/execute?paymentId=${paymentId}`, {
+      const response = await fetch(`${BASE_URL}/api/payments/execute?paymentId=${paymentId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +50,7 @@ const SubscriptionSection = () => {
     try {
       if (!userId) throw new Error("⚠ User ID not found");
 
-      const response = await fetch(`http://localhost:8080/api/subscriptions/user/${userId}`, {
+      const response = await fetch(`${BASE_URL}/api/subscriptions/user/${userId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
 
@@ -64,7 +65,7 @@ const SubscriptionSection = () => {
 
   const fetchPaymentHistory = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/payments/user/${userId}`, {
+      const response = await fetch(`${BASE_URL}/api/payments/user/${userId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
       const data = await response.json();
@@ -78,7 +79,7 @@ const SubscriptionSection = () => {
 
   const handleSubscription = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/paypal/create?amount=1.99`, {
+      const response = await fetch(`${BASE_URL}/api/paypal/create?amount=1.99`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

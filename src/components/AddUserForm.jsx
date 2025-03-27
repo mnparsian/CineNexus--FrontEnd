@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -27,7 +28,7 @@ export default function AddUserForm() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:8080/api/users/create", {
+      const res = await fetch(`${BASE_URL}/api/users/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
