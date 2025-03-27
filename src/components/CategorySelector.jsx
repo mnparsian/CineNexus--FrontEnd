@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const categories = [
   { id: "movie/popular", label: "Movies" },
-  { id: "tv/popular", label: "TV Shows" },
+  { id: "tv/top_rated", label: "TV Shows" },
   { id: "movie/top_rated", label: "Top Rated" },
   { id: "movie/upcoming", label: "Upcoming" }
 ];

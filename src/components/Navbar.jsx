@@ -66,7 +66,7 @@ export default function Navbar({ centerContent, authUser, onLogout, onLoginClick
         <div className="flex min-[840px]:hidden h-14 items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-bold cursor-pointer" onClick={() => navigate("/")}>
+            <h1 className="text-foreground text-lg font-bold cursor-pointer" onClick={() => navigate("/")}>
               CineNexus
             </h1>
           </div>
@@ -95,17 +95,27 @@ export default function Navbar({ centerContent, authUser, onLogout, onLoginClick
                       </div>
                     </Link>
 
-                    <Button variant="ghost" onClick={onLogout}>
+                    <Button
+                      /* variant="ghost" */
+                      onClick={onLogout}
+                      className="text-white  bg-gray-900/70 dark:bg-white/10 transition-colors duration-300 ease-in-out "
+                    >
                       Logout
                     </Button>
                   </>
                 ) : showAuthButtons ? (
                   <>
                     <div>
-                      <Button variant="outline" onClick={onLoginClick} className="mx-2">
+                      <Button
+                        /*  variant="outline" */
+                        onClick={onLoginClick}
+                        className="text-white mx-2  bg-gray-900/70 dark:bg-white/10 transition-colors duration-300 ease-in-out "
+                      >
                         Login
                       </Button>
-                      <Button onClick={onSignupClick}>Sign up</Button>
+                      <Button onClick={onSignupClick} className="text-white mx-2  bg-gray-900/70 dark:bg-white/10 transition-colors duration-300 ease-in-out ">
+                        Sign up
+                      </Button>
                     </div>
                   </>
                 ) : null}
