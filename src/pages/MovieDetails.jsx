@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWatchlist } from "../features/watchlistSlice";
 import AuthSide from "../components/AuthSide";
-import ReviewSidebar from "../components/ReviewSideBar";
+import ReviewSidebar from "../components/ReviewSidebar";
 import { Button } from "@/components/ui/button";
 import SearchBar from "../components/SearchBar";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
