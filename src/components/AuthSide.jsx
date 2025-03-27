@@ -38,6 +38,7 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
   useEffect(() => {
     if (status === "succeeded" && token) {
       toast.success("You have successfully logged in.");
+      setOpen(false);
       /* navigate("/"); */
       dispatch(resetAuthStatus());
     }
@@ -120,6 +121,7 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
         toast.success("Successful registration", {
           description: "You can now log in to your account."
         });
+        setOpen(false);
       })
       .catch((err) => {
         toast.error("Registration error", {

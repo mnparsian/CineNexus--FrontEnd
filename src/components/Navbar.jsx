@@ -74,7 +74,7 @@ export default function Navbar({ centerContent, authUser, onLogout, onLoginClick
           {/* Mobile Toggle */}
           <div>
             <Button variant="ghost" size="icon" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {menuOpen ? <X className="h-5 w-5 text-zinc-800 dark:text-white" /> : <Menu className="h-5 w-5 text-zinc-800 dark:text-white" />}
             </Button>
           </div>
         </div>
