@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails, updateUserProfile, uploadProfileImage } from "../features/authSlice";
 import ChangePassword from "./ChangePassword";
+import { Link } from "react-router-dom";
 
 const ProfileSection = () => {
   const dispatch = useDispatch();
@@ -117,7 +118,9 @@ const ProfileSection = () => {
         <>
           {/* Image Upload */}
           <div className="min-[640px]:flex items-center gap-6 mb-6">
-            <img src={preview} alt="Profile" className="w-24 h-24 rounded-full border-2 border-blue-400" />
+            <Link to={`/profile/${user.id}`}>
+              <img src={preview} alt="Profile" className="w-24 h-24 rounded-full border-2 border-blue-400" />
+            </Link>
             <div className="flex flex-col">
               <input type="file" onChange={handleImageChange} className="bg-background border-border text-foreground text-sm mb-2" />
               <button onClick={handleUpload} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
