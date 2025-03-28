@@ -47,7 +47,7 @@ const SplitText = ({ text }) => {
   };
 
   return (
-    <div className="text-xl font-hero w-full">
+    <div className="text-xl font-hero w-full text-wrap break-words text-center">
       {text.split(" ").map((word, wordIndex) => (
         <span key={wordIndex} className="mr-2">
           {word.split("").map((char, i) => (
@@ -57,7 +57,7 @@ const SplitText = ({ text }) => {
                 if (el) textRef.current[wordIndex * 10 + i] = el;
               }}
               onMouseEnter={(event) => scatterEffect(event, wordIndex * 10 + i)}
-              className="inline-block opacity-0 cursor-pointer"
+              className="inline-block opacity-0 cursor-pointer break-words"
             >
               {char}
             </span>
