@@ -158,15 +158,15 @@ export default function MovieDetails() {
       >
         <div className="relative z-10 flex flex-col items-start gap-8 p-10  pt-[120px] sm:pt-[140px] items-center">
           <div className="flex flex-col md:flex-row items-start gap-8 w-full max-w-5xl">
-            <img className="w-64 rounded-lg shadow-lg" src={`https://image.tmdb.org/t/p/w500${movie.posterUrl}`} alt={movie.title} />
-            <div className="flex flex-col max-w-2xl">
+            <img className="w-full md:w-64 rounded-lg shadow-lg" src={`https://image.tmdb.org/t/p/w500${movie.posterUrl}`} alt={movie.title} />
+            <div className="flex flex-col w-full md:max-w-2xl">
               <h1 className="text-4xl font-bold">{movie.title}</h1>
               <p className="text-lg text-gray-300">{movie.overview}</p>
               <div className="flex items-center gap-4 mt-4">
                 <span className="bg-yellow-500 text-black px-3 py-1 rounded-lg font-bold">⭐ {movie.voteAverage.toFixed(1)}</span>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {movie.mediaGenres.map((g) => (
-                    <GenreMoviesSheet key={g.genre.id} genreId={g.genre.id} genreName={g.genre.name} />
+                    <GenreMoviesSheet key={g.genre.id} genreId={g.genre.id} genreName={g.genre.name} className="text-sm px-2 py-1 rounded-md" />
                   ))}
                 </div>
               </div>
