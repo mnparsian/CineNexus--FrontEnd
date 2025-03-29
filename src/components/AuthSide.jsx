@@ -139,7 +139,7 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
       {/* <SheetTrigger className="fixed top-6 left-6 px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all dark:bg-gray-700 dark:text-gray-200">
         Login / Sign Up
       </SheetTrigger> */}
-      <SheetContent side="left" className="w-full max-w-sm bg-background text-foreground p-6 h-screen overflow-y-auto">
+      <SheetContent side="left" className="w-full max-w-sm bg-background text-foreground p-6 h-screen flex flex-col">
         <h1 className="text-foreground text-4xl font-bold mb-6">{isLogin ? "Welcome Back" : "Create an Account"}</h1>
         <p className="text-foreground mb-6 text-lg">{isLogin ? "Login to your account to continue." : "Sign up to join our community."}</p>
 
@@ -182,7 +182,7 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
             <button className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg text-lg hover:bg-blue-600 transition-all dark:bg-blue-700">Login</button>
           </form>
         ) : (
-          <form className="flex flex-col space-y-4" onSubmit={handleRegister}>
+          <form className="flex flex-col space-y-4 flex-1 overflow-y-auto" onSubmit={handleRegister}>
             <input
               type="text"
               placeholder="First Name"
