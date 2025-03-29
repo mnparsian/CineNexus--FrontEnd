@@ -259,6 +259,13 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
                 >
                   Verify OTP
                 </button>
+                <button
+                  type="button"
+                  onClick={handleSendOtp}
+                  className="w-full bg-blue-500 mt-2 text-white py-2 rounded-lg shadow text-sm hover:bg-blue-600 transition-all"
+                >
+                  Resend OTP
+                </button>
               </>
             ) : (
               <button className="w-full bg-green-500 text-white py-3 rounded-lg shadow-lg text-lg hover:bg-green-600 transition-all dark:bg-green-700">
