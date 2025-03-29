@@ -112,8 +112,8 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
         role: "USER",
         name,
         surname,
-        country_id: countryId,
-        preferredLanguage_id: languageId
+        country_id: countryId || 1,
+        preferredLanguage_id: languageId || 1
       })
     )
       .unwrap()
@@ -219,6 +219,7 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
               className="p-3 text-lg bg-muted text-foreground border rounded-lg"
             />
             <select value={countryId} onChange={(e) => setCountryId(e.target.value)}>
+              <option value="">Select Country</option>
               {countries.map((c) => (
                 <option className="bg-muted p-3" key={c.id} value={c.id}>
                   {c.name}
@@ -226,6 +227,7 @@ export default function AuthSidebar({ open, setOpen, defaultToLogin = true }) {
               ))}
             </select>
             <select value={languageId} onChange={(e) => setLanguageId(e.target.value)}>
+              <option value="">Select Language</option>
               {languages.map((l) => (
                 <option className="bg-muted p-3" key={l.id} value={l.id}>
                   {l.name}
